@@ -18,12 +18,11 @@ public class JpaRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Account account=new Account();
-        account.setUsername("testf");
+        Account account=new Account();account.setUsername("testf");
         account.setPassword("hibernate");
         Study study=new Study();
         study.setName("spring data jpa");
-        study.setOwner(account);
+        account.getStudies().add(study);
         //hibernate를 이용한 영속화
         Session session=entityManager.unwrap(Session.class);
         session.save(account);
